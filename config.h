@@ -25,6 +25,9 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 };
 
+static const XPoint stickyicon[]    = { {0,0}, {4,0}, {4,8}, {2,6}, {0,8}, {0,0} }; /* represents the icon as an array of vertices */
+static const XPoint stickyiconbb    = {4,8};	/* defines the bottom right corner of the polygon's bounding box (speeds up scaling) */
+
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
@@ -36,7 +39,9 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
-	{ "SpeedCrunch",  NULL,   NULL,       0,       1,           -1 },
+	{ "Google-chrome",  NULL, NULL,       1 << 8,       0,           -1 },
+	{ "Chromium",  NULL,      NULL,       1 << 8,       0,           -1 },
+	{ "SpeedCrunch",  NULL,   NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -68,10 +73,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", NULL };
-static const char *termcmd[]  = { "alacritty", NULL };
-
-static const char *brupcmd[] = { "light", "-A", "1", NULL };
-static const char *brdowncmd[] = { "light", "-U", "1", NULL };
+static const char *termcmd[]  = { "st", NULL };
 
 static const char *chromecmd[]  = { "/usr/bin/google-chrome", "--profile-directory=Default", NULL };
 
@@ -79,18 +81,20 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
     { MODKEY,                       XK_f,      spawn,          {.v = chromecmd } },
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_d,      spawn,          SHCMD("$HOME/.local/bin/dmenurun.sh") },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_v,      spawn,          SHCMD("pavucontrol-qt") },
+
+	{ MODKEY|ShiftMask,             XK_d,      spawn,          SHCMD("autodmenu") },
+	{ MODKEY,                       XK_v,      spawn,          SHCMD("pavucontrol") },
 	{ MODKEY,                       XK_c,      spawn,          SHCMD("speedcrunch") },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("flameshot gui") },
 	{ MODKEY,                       XK_s,      spawn,          SHCMD("/usr/bin/chromium-browser") },
+	{ MODKEY,                       XK_e,      spawn,          SHCMD("/usr/bin/thunar") },
 
-    { 0, XF86XK_AudioMute, spawn, SHCMD("pactl set-sink-mute 0 toggle; kill -44 $(pidof dwmblocks)") },
-    { 0, XF86XK_AudioLowerVolume, spawn, SHCMD("pactl set-sink-volume 0 -1%; kill -44 $(pidof dwmblocks)") },
-    { 0, XF86XK_AudioRaiseVolume, spawn, SHCMD("pactl set-sink-volume 0 +1%; kill -44 $(pidof dwmblocks)") },
-    { 0, XF86XK_MonBrightnessUp, spawn, {.v = brupcmd} },
-    { 0, XF86XK_MonBrightnessDown, spawn, {.v = brdowncmd} },
+    { 0, XF86XK_AudioMute,          spawn, SHCMD("pactl set-sink-mute 0 toggle; kill -44 $(pidof dwmblocks)") },
+    { 0, XF86XK_AudioLowerVolume,   spawn, SHCMD("pactl set-sink-volume 0 -1%; kill -44 $(pidof dwmblocks)") },
+    { 0, XF86XK_AudioRaiseVolume,   spawn, SHCMD("pactl set-sink-volume 0 +1%; kill -44 $(pidof dwmblocks)") },
+    { 0, XF86XK_MonBrightnessDown,  spawn, SHCMD("xbacklight -dec 2") },
+    { 0, XF86XK_MonBrightnessUp,    spawn, SHCMD("xbacklight -inc 2") },
 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -107,6 +111,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
+	{ MODKEY|ControlMask,           XK_s,      togglesticky,   {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
