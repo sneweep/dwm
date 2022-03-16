@@ -75,27 +75,8 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", NULL };
 static const char *termcmd[]  = { "st", NULL };
 
-static const char *chromecmd[]  = { "/usr/bin/google-chrome", "--profile-directory=Default", NULL };
-
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-    { MODKEY,                       XK_f,      spawn,          {.v = chromecmd } },
-	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-
-	{ MODKEY|ShiftMask,             XK_d,      spawn,          SHCMD("autodmenu") },
-	{ MODKEY,                       XK_v,      spawn,          SHCMD("pavucontrol") },
-	{ MODKEY,                       XK_c,      spawn,          SHCMD("speedcrunch") },
-	{ MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("flameshot gui") },
-	{ MODKEY,                       XK_s,      spawn,          SHCMD("/usr/bin/chromium-browser") },
-	{ MODKEY,                       XK_e,      spawn,          SHCMD("/usr/bin/thunar") },
-
-    { 0, XF86XK_AudioMute,          spawn, SHCMD("pactl set-sink-mute 0 toggle; kill -44 $(pidof dwmblocks)") },
-    { 0, XF86XK_AudioLowerVolume,   spawn, SHCMD("pactl set-sink-volume 0 -1%; kill -44 $(pidof dwmblocks)") },
-    { 0, XF86XK_AudioRaiseVolume,   spawn, SHCMD("pactl set-sink-volume 0 +1%; kill -44 $(pidof dwmblocks)") },
-    { 0, XF86XK_MonBrightnessDown,  spawn, SHCMD("xbacklight -dec 2") },
-    { 0, XF86XK_MonBrightnessUp,    spawn, SHCMD("xbacklight -inc 2") },
-
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -128,7 +109,6 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
-	{ MODKEY|ShiftMask,             XK_w,      spawn,          SHCMD("dmenusleep.sh") },
 	{ MODKEY|ShiftMask,             XK_r,      spawn,          SHCMD("killall dwmblocks 2>/dev/null ; dwmblocks &") },
 };
 
