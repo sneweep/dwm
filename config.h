@@ -14,21 +14,23 @@ static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        = 1;     /* 0 means no systray */
 
-static const char *fonts[]          = { "JetBrains Mono Nerd Font:size=10" };
-static const char dmenufont[]       = "JetBrains Mono Nerd Font:size=10";
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
-static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
-};
+static const char *fonts[]          = { "DejaVu Sans:size=10" };
+static const char dmenufont[]       = "DejaVu Sans:size=10";
 
-static const XPoint stickyicon[]    = { {0,0}, {4,0}, {4,8}, {2,6}, {0,8}, {0,0} }; /* represents the icon as an array of vertices */
-static const XPoint stickyiconbb    = {4,8};	/* defines the bottom right corner of the polygon's bounding box (speeds up scaling) */
+static const char fg[]         = "#ffffff";
+static const char bg[]         = "#2E3440";
+static const char acc[]        = "#81A1C1";
+
+static const char *colors[][3]      = {
+	/*                   fg  bg   border */
+	[SchemeNorm]     = { fg, bg,  bg  },
+	[SchemeSel]      = { bg, acc, acc },
+	[SchemeStatus]   = { fg, bg,  "#000000"  }, // Statusbar right
+	[SchemeTagsSel]  = { bg, acc, "#000000"  }, // Tagbar left selected
+	[SchemeTagsNorm] = { fg, bg,  "#000000"  }, // Tagbar left unselected
+	[SchemeInfoSel]  = { bg, acc,  "#000000"  }, // infobar middle  selected
+	[SchemeInfoNorm] = { bg, acc,  "#000000"  }, // infobar middle  unselected
+};
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -40,10 +42,11 @@ static const Rule rules[] = {
 	 */
 	/* class            instance    title       tags mask   isfloating  isterminal  noswallow  monitor */
 	{ "Gimp",            NULL,      NULL,       0,          1,          0,           0,        -1 },
-	{ "Firefox",         NULL,      NULL,       1 << 8,     0,          0,           0,        -1 },
+	{ "firefox",         NULL,      NULL,       1 << 8,     0,          0,           0,        -1 },
 	{ "Google-chrome",   NULL,      NULL,       1 << 8,     0,          0,           0,        -1 },
 	{ "Chromium",        NULL,      NULL,       1 << 8,     0,          0,           0,        -1 },
 	{ "SpeedCrunch",     NULL,      NULL,       0,          1,          0,           0,        -1 },
+	{ "Safeeyes",        NULL,      NULL,       0,          1,          0,           0,        -1 },
 	{ "st-256color",     NULL,      NULL,       0,          0,          1,           0,        -1 },
 	{ NULL,       NULL,       "Event Tester",   0,          0,          0,           1,        -1 },
 };
@@ -71,8 +74,6 @@ static const Layout layouts[] = {
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
-
-#include <X11/XF86keysym.h>
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
