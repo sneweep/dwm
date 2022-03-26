@@ -20,6 +20,7 @@ static const char dmenufont[]       = "DejaVu Sans:size=10";
 static const char fg[]         = "#ffffff";
 static const char bg[]         = "#2E3440";
 static const char acc[]        = "#81A1C1";
+static const char fg2[]        = "#000000";
 
 static const char *colors[][3]      = {
 	/*                   fg  bg   border */
@@ -28,8 +29,8 @@ static const char *colors[][3]      = {
 	[SchemeStatus]   = { fg, bg,  "#000000"  }, // Statusbar right
 	[SchemeTagsSel]  = { bg, acc, "#000000"  }, // Tagbar left selected
 	[SchemeTagsNorm] = { fg, bg,  "#000000"  }, // Tagbar left unselected
-	[SchemeInfoSel]  = { "#000000", acc,  "#000000"  }, // infobar middle  selected
-	[SchemeInfoNorm] = { "#000000", acc,  "#000000"  }, // infobar middle  unselected
+	[SchemeInfoSel]  = { bg, acc,  "#000000"  }, // infobar middle  selected
+	[SchemeInfoNorm] = { bg, acc,  "#000000"  }, // infobar middle  unselected
 };
 
 /* tagging */
