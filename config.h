@@ -30,6 +30,7 @@ static const char *colors[][3]      = {
 	[SchemeTagsNorm] = { fg, bg,  "#000000"  }, // Tagbar left unselected
 	[SchemeInfoSel]  = { bg, acc,  "#000000"  }, // infobar middle  selected
 	[SchemeInfoNorm] = { bg, acc,  "#000000"  }, // infobar middle  unselected
+	[SchemeHid]      = { fg, bg, "#000000" },
 };
 
 /* tagging */
@@ -129,6 +130,7 @@ static Button buttons[] = {
  	{ ClkStatusText,        0,              Button3,        sigdwmblocks,   {.i = 3} }, 
  	{ ClkStatusText,        0,              Button4,        sigdwmblocks,   {.i = 4} }, 
  	{ ClkStatusText,        0,              Button5,        sigdwmblocks,   {.i = 5} }, 
+	{ ClkWinTitle,          0,              Button1,        togglewin,      {0} },
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
