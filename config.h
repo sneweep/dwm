@@ -7,6 +7,7 @@ static const int smartgaps          = 0;        /* 1 means no outer gap when the
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
+static const double defaultopacity  = 1;
 
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft = 0;   	/* 0: systray in the right corner, >0: systray on left of status text */
@@ -97,6 +98,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_k,      pushup,         {0} },
     { MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
+	{ MODKEY|ControlMask,		    XK_j,	   spawn,	       SHCMD("transset-df --point --dec 0.05") },
+	{ MODKEY|ControlMask,		    XK_k,	   spawn,	       SHCMD("transset-df --point --inc 0.05") },
+	{ MODKEY|ControlMask,		    XK_o,	   spawn,	       SHCMD("transset-df --point 0.05") },
+	{ MODKEY|ControlMask,		    XK_i,	   spawn,	       SHCMD("transset-df --point 1") },
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_e,      setlayout,      {.v = &layouts[1]} },
