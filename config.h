@@ -84,49 +84,45 @@ static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
-	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_u,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY|ShiftMask,             XK_h,      setcfact,       {.f = +0.25} },
-	{ MODKEY|ShiftMask,             XK_l,      setcfact,       {.f = -0.25} },
-	{ MODKEY|ShiftMask,             XK_o,      setcfact,       {.f =  0.00} },
-	{ MODKEY|ShiftMask,             XK_j,      pushdown,       {0} },
-	{ MODKEY|ShiftMask,             XK_k,      pushup,         {0} },
-    { MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
-	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY|ControlMask,		    XK_j,	   spawn,	       SHCMD("transset-df --point --dec 0.05") },
-	{ MODKEY|ControlMask,		    XK_k,	   spawn,	       SHCMD("transset-df --point --inc 0.05") },
-	{ MODKEY|ControlMask,		    XK_o,	   spawn,	       SHCMD("transset-df --point 0.05") },
-	{ MODKEY|ControlMask,		    XK_i,	   spawn,	       SHCMD("transset-df --point 1") },
-	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_e,      setlayout,      {.v = &layouts[1]} },
- 	{ MODKEY|ControlMask,           XK_f,      togglefullscreen, {0} },
- 	{ MODKEY|ShiftMask,             XK_f,      togglefakefullscreen, {0} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_space,  setlayout,      {0} },
-	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
-	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
-	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	TAGKEYS(                        XK_1,                      0)
-	TAGKEYS(                        XK_2,                      1)
-	TAGKEYS(                        XK_3,                      2)
-	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
-	{ MODKEY|ShiftMask,             XK_r,      spawn,          SHCMD("killall dwmblocks 2>/dev/null ; dwmblocks &") },
+	{ MODKEY,                       56,      togglebar,      {0} }, // b
+	{ MODKEY,                       44,      focusstack,     {.i = +1 } }, // j
+	{ MODKEY,                       45,      focusstack,     {.i = -1 } }, // k
+	{ MODKEY,                       31,      incnmaster,     {.i = +1 } }, // i
+	{ MODKEY,                       30,      incnmaster,     {.i = -1 } }, // u
+	{ MODKEY,                       43,      setmfact,       {.f = -0.05} }, // h
+	{ MODKEY,                       46,      setmfact,       {.f = +0.05} }, // l
+	{ MODKEY|ShiftMask,             43,      setcfact,       {.f = +0.25} }, // h
+	{ MODKEY|ShiftMask,             46,      setcfact,       {.f = -0.25} }, // l
+	{ MODKEY|ShiftMask,             32,      setcfact,       {.f =  0.00} }, // o
+	{ MODKEY|ShiftMask,             44,      pushdown,       {0} }, // j
+	{ MODKEY|ShiftMask,             45,      pushup,         {0} }, // k
+    { MODKEY|ShiftMask,             36, zoom,           {0} }, // return
+	{ MODKEY,                       23,    view,           {0} }, // tab
+	{ MODKEY|ShiftMask,             24,      killclient,     {0} }, // q
+	{ MODKEY,                       28,      setlayout,      {.v = &layouts[0]} }, // t
+	{ MODKEY,                       26,      setlayout,      {.v = &layouts[1]} }, // e
+ 	{ MODKEY|ControlMask,           41,      togglefullscreen, {0} }, // f
+ 	{ MODKEY|ShiftMask,             41,      togglefakefullscreen, {0} }, // f
+	{ MODKEY,                       58,      setlayout,      {.v = &layouts[2]} }, // m
+	{ MODKEY,                       65,  setlayout,      {0} }, // space
+	{ MODKEY|ShiftMask,             65,  togglefloating, {0} }, // space
+	{ MODKEY,                       19,      view,           {.ui = ~0 } }, // 0
+	{ MODKEY|ShiftMask,             19,      tag,            {.ui = ~0 } }, // 0
+	{ MODKEY,                       59,  focusmon,       {.i = -1 } }, // ,
+	{ MODKEY,                       60, focusmon,       {.i = +1 } }, // .
+	{ MODKEY|ShiftMask,             59,  tagmon,         {.i = -1 } }, // ,
+	{ MODKEY|ShiftMask,             60, tagmon,         {.i = +1 } }, // .
+	TAGKEYS(                        10,                      0) // 1
+	TAGKEYS(                        11,                      1) // 2
+	TAGKEYS(                        12,                      2) // 3
+	TAGKEYS(                        13,                      3) // 4
+	TAGKEYS(                        14,                      4) // 5
+	TAGKEYS(                        15,                      5) // 6
+	TAGKEYS(                        16,                      6) // 7
+	TAGKEYS(                        17,                      7) // 8
+	TAGKEYS(                        18,                      8) // 9
+	{ MODKEY|ShiftMask,             26,      quit,           {0} }, // e
+	{ MODKEY|ShiftMask,             27,      spawn,          SHCMD("killall dwmblocks 2>/dev/null ; dwmblocks &") }, // r
 };
 
 /* button definitions */
