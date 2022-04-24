@@ -18,19 +18,19 @@ static const int showsystray        = 1;     /* 0 means no systray */
 static const char *fonts[]          = { "DejaVu Sans:size=10", "FontAwesome:pixelsize=18:antialias=true:autohint=true"};
 static const char dmenufont[]       = "DejaVu Sans:size=10";
 
-static const char fg[]         = "#ffffff";
-static const char bg[]         = "#2E3440";
-static const char acc[]        = "#81A1C1";
+static const char fg[]         = "#ebdbb2";
+static const char bg[]         = "#222222";
+static const char acc[]        = "#504945";
 
 static const char *colors[][3]      = {
 	/*                   fg  bg   border */
 	[SchemeNorm]     = { fg, bg,  bg  },
-	[SchemeSel]      = { bg, acc, acc },
+	[SchemeSel]      = { fg, acc, acc },
 	[SchemeStatus]   = { fg, bg,  "#000000"  }, // Statusbar right
-	[SchemeTagsSel]  = { bg, acc, "#000000"  }, // Tagbar left selected
+	[SchemeTagsSel]  = { fg, acc, "#000000"  }, // Tagbar left selected
 	[SchemeTagsNorm] = { fg, bg,  "#000000"  }, // Tagbar left unselected
-	[SchemeInfoSel]  = { bg, acc,  "#000000"  }, // infobar middle  selected
-	[SchemeInfoNorm] = { bg, acc,  "#000000"  }, // infobar middle  unselected
+	[SchemeInfoSel]  = { fg, acc,  "#000000"  }, // infobar middle  selected
+	[SchemeInfoNorm] = { fg, acc,  "#000000"  }, // infobar middle  unselected
 	[SchemeHid]      = { fg, bg, "#000000" },
 };
 
@@ -96,22 +96,22 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             32,      setcfact,       {.f =  0.00} }, // o
 	{ MODKEY|ShiftMask,             44,      pushdown,       {0} }, // j
 	{ MODKEY|ShiftMask,             45,      pushup,         {0} }, // k
-    { MODKEY|ShiftMask,             36, zoom,           {0} }, // return
-	{ MODKEY,                       23,    view,           {0} }, // tab
+    { MODKEY|ShiftMask,             36,      zoom,           {0} }, // return
+	{ MODKEY,                       23,      view,           {0} }, // tab
 	{ MODKEY|ShiftMask,             24,      killclient,     {0} }, // q
 	{ MODKEY,                       28,      setlayout,      {.v = &layouts[0]} }, // t
-	{ MODKEY,                       26,      setlayout,      {.v = &layouts[1]} }, // e
+	{ MODKEY,                       41,      setlayout,      {.v = &layouts[1]} }, // f
  	{ MODKEY|ControlMask,           41,      togglefullscreen, {0} }, // f
  	{ MODKEY|ShiftMask,             41,      togglefakefullscreen, {0} }, // f
 	{ MODKEY,                       58,      setlayout,      {.v = &layouts[2]} }, // m
-	{ MODKEY,                       65,  setlayout,      {0} }, // space
-	{ MODKEY|ShiftMask,             65,  togglefloating, {0} }, // space
+	{ MODKEY,                       65,      setlayout,      {0} }, // space
+	{ MODKEY|ShiftMask,             65,      togglefloating, {0} }, // space
 	{ MODKEY,                       19,      view,           {.ui = ~0 } }, // 0
 	{ MODKEY|ShiftMask,             19,      tag,            {.ui = ~0 } }, // 0
-	{ MODKEY,                       59,  focusmon,       {.i = -1 } }, // ,
-	{ MODKEY,                       60, focusmon,       {.i = +1 } }, // .
-	{ MODKEY|ShiftMask,             59,  tagmon,         {.i = -1 } }, // ,
-	{ MODKEY|ShiftMask,             60, tagmon,         {.i = +1 } }, // .
+	{ MODKEY,                       59,      focusmon,       {.i = -1 } }, // ,
+	{ MODKEY,                       60,      focusmon,       {.i = +1 } }, // .
+	{ MODKEY|ShiftMask,             59,      tagmon,         {.i = -1 } }, // ,
+	{ MODKEY|ShiftMask,             60,      tagmon,         {.i = +1 } }, // .
 	TAGKEYS(                        10,                      0) // 1
 	TAGKEYS(                        11,                      1) // 2
 	TAGKEYS(                        12,                      2) // 3
