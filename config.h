@@ -97,7 +97,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             45,      pushup,         {0} }, // k
     { MODKEY|ShiftMask,             36,      zoom,           {0} }, // return
 	{ MODKEY,                       23,      view,           {0} }, // tab
-	{ MODKEY|ShiftMask,             24,      killclient,     {0} }, // q
+	{ MODKEY,                       24,      killclient,     {0} }, // q
 	{ MODKEY,                       28,      setlayout,      {.v = &layouts[0]} }, // t
 	{ MODKEY,                       41,      setlayout,      {.v = &layouts[1]} }, // f
  	{ MODKEY|ControlMask,           41,      togglefullscreen, {0} }, // f
