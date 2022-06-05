@@ -7,6 +7,7 @@ static const int smartgaps          = 0;        /* 1 means no outer gap when the
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
+static const char buttonbar[]       = "+";
 static const double defaultopacity  = 1;
 
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
@@ -123,6 +124,7 @@ static Key keys[] = {
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static Button buttons[] = {
 	/* click                event mask      button          function        argument */
+	{ ClkButton,		    0,		        Button1,	    spawn,		    SHCMD("dmenubutton.sh") },
    	{ ClkStatusText,        0,              Button1,        sigdwmblocks,   {.i = 1} },
  	{ ClkStatusText,        0,              Button2,        sigdwmblocks,   {.i = 2} },
  	{ ClkStatusText,        0,              Button3,        sigdwmblocks,   {.i = 3} }, 
